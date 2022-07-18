@@ -14,6 +14,7 @@ const winston = require('./common/logging');
 const wordRouter = require('./resources/words/word.router');
 const signinRouter = require('./resources/authentication/signin.router');
 const userRouter = require('./resources/users/user.router');
+const bookRouter = require('./resources/books/books.router');
 const userTokenRouter = require('./resources/token/token.router');
 const userWordsRouter = require('./resources/userWords/userWord.router');
 const aggregatedWordsRouter = require('./resources/aggregatedWords/aggregatedWord.router');
@@ -31,6 +32,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/files', express.static(path.join(__dirname, '../files')));
+
+app.use('/books', bookRouter);
 
 app.use(checkAuthentication);
 
@@ -58,6 +61,8 @@ app.use('/words', wordRouter);
 app.use('/signin', signinRouter);
 
 app.use('/users', userRouter);
+
+//app.use('/books', bookRouter);
 
 userRouter.use('/:id/tokens', userIdValidator, userTokenRouter);
 
