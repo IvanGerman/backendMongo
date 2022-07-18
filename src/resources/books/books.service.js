@@ -1,5 +1,6 @@
 const booksRepo = require('./books.db.repository');
-
+const statisticService = require('../statistics/statistic.service');
+const settingsService = require('../settings/setting.service');
 
 const get = title => booksRepo.get(title);
 
